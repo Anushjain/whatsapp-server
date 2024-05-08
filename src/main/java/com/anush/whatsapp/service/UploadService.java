@@ -21,12 +21,12 @@ public class UploadService {
     AttachmentRepository attachmentRepository;
 
 
-    private final String attachmentPicturePath = "root/picture";
-    private final String attachmentVideoPath = "root/video";
-    private final String attachmentOtherPath = "root/other";
+    private final String attachmentPicturePath = "/root/picture";
+    private final String attachmentVideoPath = "/root/video";
+    private final String attachmentOtherPath = "/root/other";
 
 
-    private final String profilePicturePath = "root/profile";
+    private final String profilePicturePath = "/root/profile";
 
     public Attachment uploadAttachment(MultipartFile file) {
         try {

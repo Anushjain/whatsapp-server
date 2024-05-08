@@ -24,7 +24,7 @@ public class UserController {
 
     @GetMapping
     @Operation(summary = "Get All Users")
-    public ResponseEntity<Page<User>> getAllUsers(@RequestParam(value = "query") String query,
+    public ResponseEntity<Page<User>> getAllUsers(@RequestParam(value = "query",required = false) String query,
                                                   @RequestParam(value = "page", defaultValue = "0") int page,
                                                   @RequestParam(value = "size", defaultValue = "10") int size) {
         Page<User> users = userService.searchUser(query,page, size);
