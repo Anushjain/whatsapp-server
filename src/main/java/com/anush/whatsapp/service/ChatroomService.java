@@ -3,7 +3,6 @@ package com.anush.whatsapp.service;
 import com.anush.whatsapp.domain.Chatroom;
 import org.springframework.data.domain.Page;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -18,9 +17,9 @@ public interface ChatroomService {
 
     void deleteChatroom(UUID chatRoomId, UUID adminId);
 
-    Chatroom createChatroom(UUID userId, String chatroomName, Set<UUID> userIds);
+    Chatroom createChatroom(UUID userId, String chatroomName, Set<UUID> userIds, String profilePictureUrl);
 
-    void editChatroomName(UUID chatRoomId, UUID userId, String newChatroomName);
+    void editChatroomName(UUID chatRoomId, UUID userId, String newChatroomName, String profilePictureUrl);
 
     Optional<Chatroom> getChatroom(UUID chatRoomId);
 

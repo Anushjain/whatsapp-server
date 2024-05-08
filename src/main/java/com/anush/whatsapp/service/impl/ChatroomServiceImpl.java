@@ -60,11 +60,12 @@ public class ChatroomServiceImpl implements ChatroomService {
     }
 
     @Override
-    public Chatroom createChatroom(UUID userId, String chatroomName, Set<UUID> userIds) {
+    public Chatroom createChatroom(UUID userId, String chatroomName, Set<UUID> userIds, String profilePictureUrl) {
        User admin =  userService.getUserById(userId).orElseThrow();
         Chatroom chatroom = new Chatroom();
         chatroom.setName(chatroomName);
         chatroom.setAdminId(userId);
+        chatroom.setProfileImageUrl(profilePictureUrl);
         chatroom.setUsers(new HashSet<>());
         chatroom.setMessages(new HashSet<>());
         chatroom.getUsers().add(admin);
@@ -77,10 +78,11 @@ public class ChatroomServiceImpl implements ChatroomService {
     }
 
     @Override
-    public void editChatroomName(UUID chatRoomId, UUID userId, String newChatroomName) {
+    public void editChatroomName(UUID chatRoomId, UUID userId, String newChatroomName, String profilePictureUrl) {
         getChatroom(chatRoomId).ifPresent(chatroom -> {
             if(chatroom.getAdminId().equals(userId)){
                 chatroom.setName(newChatroomName);
+                chatroom.setProfileImageUrl(profilePictureUrl);
                 chatroomRepository.save(chatroom);
             }
         });
