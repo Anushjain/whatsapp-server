@@ -12,6 +12,7 @@ import java.util.concurrent.CompletableFuture;
 
 
 @Service
+@Slf4j
 public class KafkaProducerService {
 
     @Autowired
@@ -23,10 +24,8 @@ public class KafkaProducerService {
         CompletableFuture<SendResult<String,String>> future =  kafkaTemplate.send("message_whatsapp_test",message, message);
 
         future.whenComplete((result, ex) -> {
-            if (ex == null) {  
-               System.out.printf("Produced event to topic %s: key = %-10s value = %s%n", result.getRecordMetadata().topic(), message, message);
-            } else {
-                ex.printStackTrace(System.out);
+            if (ex != null) {
+             ex.printStackTrace(System.out);
             }
         });
     }
